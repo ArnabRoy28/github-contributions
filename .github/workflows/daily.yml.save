@@ -1,3 +1,4 @@
+.cat > .github/workflows/daily.yml << 'EOF'
 name: Daily Commit
 
 on:
@@ -14,34 +15,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: true
 
       - name: Daily commit
         run: |
           echo "$(date)" >> activity.txt
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
           git add .
           git commit -m "Daily update" || exit 0
           git push
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+EOF
